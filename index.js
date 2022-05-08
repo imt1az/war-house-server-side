@@ -42,21 +42,21 @@ async function run() {
 
 
     // AUTH
-    app.post('/login',async(req,res)=>{
-      const user =req.body;
-      const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{
-        expiresIn:'1d'
-      });
-      res.send({accessToken})
-    })
+    // app.post('/login',async(req,res)=>{
+    //   const user =req.body;
+    //   const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{
+    //     expiresIn:'1d'
+    //   });
+    //   res.send({accessToken})
+    // })
 
     // sERVER aPI
-    // app.get("/products", async (req, res) => {
-    //   const query = {};
-    //   const cursor = ProductCollection.find(query);
-    //   const products = await cursor.toArray();
-    //   res.send(products);
-    // });
+    app.get("/products", async (req, res) => {
+      const query = {};
+      const cursor = ProductCollection.find(query);
+      const products = await cursor.toArray();
+      res.send(products);
+    });
 
     app.post("/products", async (req, res) => {
       const product = req.body;
