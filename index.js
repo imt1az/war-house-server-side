@@ -72,21 +72,21 @@ async function run() {
     })
 
     // Manage Products
-    app.get('/manageProducts',verifyJWT, async(req,res)=>{
+    // app.get('/manageProducts',verifyJWT, async(req,res)=>{
         
-         const decodedEmail = req.decoded.email;
-        const email = req.query.email;
+    //      const decodedEmail = req.decoded.email;
+    //     const email = req.query.email;
 
-        if(email===decodedEmail){
-          const query = {email:email}
-        const cursor = ProductCollection.find(query);
-        const products = await cursor.toArray();
-        res.send(products);
-        }
-        else{
-          res.status(403).send({message:'Forbidden access'})
-        }
-    })
+    //     if(email===decodedEmail){
+    //       const query = {email:email}
+    //     const cursor = ProductCollection.find(query);
+    //     const products = await cursor.toArray();
+    //     res.send(products);
+    //     }
+    //     else{
+    //       res.status(403).send({message:'Forbidden access'})
+    //     }
+    // })
 
     // Update Product
     app.put('/inventory/:id',async(req,res)=>{
@@ -104,12 +104,12 @@ async function run() {
           res.send(result);
     })
     //Delete
-    // app.delete('/inventory/:id',async(req,res)=>{
-    //     const id = req.params.id;
-    //   const query = {_id:ObjectId(id)}
-    //   const result = await ProductCollection.deleteOne(query);
-    //   res.send(result);
-    // })
+    app.delete('/inventory/:id',async(req,res)=>{
+        const id = req.params.id;
+      const query = {_id:ObjectId(id)}
+      const result = await ProductCollection.deleteOne(query);
+      res.send(result);
+    })
 
 
   } 
