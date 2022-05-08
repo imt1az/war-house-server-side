@@ -51,12 +51,12 @@ async function run() {
     })
 
     // sERVER aPI
-    app.get("/products", async (req, res) => {
-      const query = {};
-      const cursor = ProductCollection.find(query);
-      const products = await cursor.toArray();
-      res.send(products);
-    });
+    // app.get("/products", async (req, res) => {
+    //   const query = {};
+    //   const cursor = ProductCollection.find(query);
+    //   const products = await cursor.toArray();
+    //   res.send(products);
+    // });
 
     app.post("/products", async (req, res) => {
       const product = req.body;
@@ -72,21 +72,21 @@ async function run() {
     })
 
     // Manage Products
-    // app.get('/manageProducts',verifyJWT, async(req,res)=>{
+    app.get('/manageProducts',verifyJWT, async(req,res)=>{
         
-    //      const decodedEmail = req.decoded.email;
-    //     const email = req.query.email;
+         const decodedEmail = req.decoded.email;
+        const email = req.query.email;
 
-    //     if(email===decodedEmail){
-    //       const query = {email:email}
-    //     const cursor = ProductCollection.find(query);
-    //     const products = await cursor.toArray();
-    //     res.send(products);
-    //     }
-    //     else{
-    //       res.status(403).send({message:'Forbidden access'})
-    //     }
-    // })
+        if(email===decodedEmail){
+          const query = {email:email}
+        const cursor = ProductCollection.find(query);
+        const products = await cursor.toArray();
+        res.send(products);
+        }
+        else{
+          res.status(403).send({message:'Forbidden access'})
+        }
+    })
 
     // Update Product
     app.put('/inventory/:id',async(req,res)=>{
